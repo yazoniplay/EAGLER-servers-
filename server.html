@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="View an Eaglercraft server on EAGLER Servers."
+    >
+
+    <meta
+        name="theme-color"
+        content="#050609"
+    >
+
+    <title>Server — EAGLER Servers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div
+        class="background"
+        aria-hidden="true"
+    >
+        <div class="background-grid"></div>
+
+        <div class="background-glow glow-one"></div>
+
+        <div class="background-glow glow-two"></div>
+    </div>
+
+
+    <!-- Navigation -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="EAGLER Servers home"
+            >
+                <span class="brand-mark">E</span>
+
+                <span class="brand-name">
+                    EAGLER <strong>Servers</strong>
+                </span>
+            </a>
+
+
+            <nav
+                class="nav-links"
+                aria-label="Main navigation"
+            >
+                <a href="servers.html">
+                    Servers
+                </a>
+
+                <a href="submit.html">
+                    Add Server
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+            </nav>
+
+
+            <a
+                href="submit.html"
+                class="nav-button"
+            >
+                Add Your Server
+            </a>
+
+
+            <button
+                class="mobile-menu-button"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Server Page -->
+
+    <main class="server-page">
+
+        <a
+            href="servers.html"
+            class="server-back"
+        >
+            ← Back to servers
+        </a>
+
+
+        <!-- server.js inserts the server here -->
+
+        <div id="serverContent"></div>
+
+
+        <!-- Not Found -->
+
+        <section
+            id="serverError"
+            class="server-error"
+            hidden
+        >
+
+            <div class="server-error-icon">
+                ?
+            </div>
+
+            <h1>
+                Server not found
+            </h1>
+
+            <p>
+                This server doesn't exist or has been
+                removed from EAGLER Servers.
+            </p>
+
+            <a
+                href="servers.html"
+                class="button button-primary"
+            >
+                Browse Servers →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand"
+                >
+                    <span class="brand-mark">E</span>
+
+                    <span class="brand-name">
+                        EAGLER <strong>Servers</strong>
+                    </span>
+                </a>
+
+                <p>
+                    Discover the Eaglercraft server community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+
+                    <strong>
+                        Explore
+                    </strong>
+
+                    <a href="servers.html">
+                        Servers
+                    </a>
+
+                    <a href="servers.html?mode=survival">
+                        Survival
+                    </a>
+
+                    <a href="servers.html?mode=pvp">
+                        PvP
+                    </a>
+
+                    <a href="servers.html?mode=lifesteal">
+                        Lifesteal
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Community
+                    </strong>
+
+                    <a href="submit.html">
+                        Add Server
+                    </a>
+
+                    <a href="about.html">
+                        About
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 EAGLER Servers
+            </span>
+
+            <span>
+                Built for the Eaglercraft community.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Server page JavaScript -->
+
+    <script src="server.js"></script>
+
+</body>
+</html>

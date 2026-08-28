@@ -10,53 +10,37 @@
 
     <meta
         name="description"
-        content="EAGLER Servers — Discover, compare and play Eaglercraft servers."
+        content="EAGLER Servers — Discover Eaglercraft servers and find your next community."
     >
 
     <meta
         name="theme-color"
-        content="#050609"
+        content="#08090b"
     >
 
-    <title>EAGLER Servers — Find Your Next Server</title>
+    <title>EAGLER Servers — Discover Eaglercraft Servers</title>
 
-    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         BACKGROUND
-         ===================================================== -->
+    <!-- Background -->
 
-    <div class="background" aria-hidden="true">
-
-        <div class="background-grid"></div>
-
-        <div class="background-glow glow-one"></div>
-
-        <div class="background-glow glow-two"></div>
-
-    </div>
+    <div
+        class="background"
+        aria-hidden="true"
+    ></div>
 
 
-    <!-- =====================================================
-         NAVIGATION
-         ===================================================== -->
+    <!-- Navigation -->
 
     <header class="navbar">
 
@@ -100,10 +84,10 @@
 
 
             <a
-                href="servers.html"
+                href="submit.html"
                 class="nav-button"
             >
-                Browse Servers
+                Add Your Server
             </a>
 
 
@@ -113,11 +97,9 @@
                 aria-label="Open navigation menu"
                 aria-expanded="false"
             >
-
                 <span></span>
                 <span></span>
                 <span></span>
-
             </button>
 
         </div>
@@ -125,49 +107,32 @@
     </header>
 
 
-    <!-- =====================================================
-         MAIN
-         ===================================================== -->
+    <!-- Main -->
 
     <main>
 
 
-        <!-- =================================================
-             HERO
-             ================================================= -->
+        <!-- Hero -->
 
-        <section class="hero">
+        <section class="home-hero">
 
-            <div class="hero-content">
+            <div class="home-hero-content">
 
-                <div class="hero-badge">
-
-                    <span class="status-dot"></span>
-
-                    The Eaglercraft server directory
-
-                </div>
+                <span class="eyebrow">
+                    EAGLERCRAFT SERVER DIRECTORY
+                </span>
 
 
                 <h1>
-
                     Find your next
-
-                    <span class="gradient-text">
-                        Eaglercraft
-                    </span>
-
-                    server.
-
+                    <span>server.</span>
                 </h1>
 
 
-                <p class="hero-description">
-
-                    Discover communities, explore new gamemodes
-                    and find your next server to play —
-                    directly from your browser.
-
+                <p>
+                    Discover Eaglercraft servers, browse
+                    different game modes, and find a
+                    community worth joining.
                 </p>
 
 
@@ -177,8 +142,7 @@
                         href="servers.html"
                         class="button button-primary"
                     >
-                        Explore Servers
-                        <span>→</span>
+                        Browse Servers →
                     </a>
 
 
@@ -191,151 +155,26 @@
 
                 </div>
 
-
-                <!-- Search -->
-
-                <form
-                    class="hero-search"
-                    id="heroSearch"
-                >
-
-                    <div
-                        class="search-icon"
-                        aria-hidden="true"
-                    >
-                        ⌕
-                    </div>
-
-
-                    <input
-                        type="search"
-                        id="serverSearch"
-                        name="search"
-                        placeholder="Search servers, gamemodes or communities..."
-                        autocomplete="off"
-                        aria-label="Search servers"
-                    >
-
-
-                    <button type="submit">
-                        Search
-                    </button>
-
-                </form>
-
-            </div>
-
-
-            <!-- Decorative visual -->
-
-            <div
-                class="hero-orbit"
-                aria-hidden="true"
-            >
-
-                <div class="orbit orbit-one"></div>
-
-                <div class="orbit orbit-two"></div>
-
-
-                <div class="hero-cube">
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                </div>
-
             </div>
 
         </section>
 
 
-        <!-- =================================================
-             PLATFORM STATS
-             ================================================= -->
+        <!-- Browse -->
 
-        <section
-            class="stats section-reveal"
-            aria-label="Platform statistics"
-        >
-
-            <div class="stat">
-
-                <strong
-                    data-stat="servers"
-                    data-count="0"
-                >
-                    0
-                </strong>
-
-                <span>
-                    Listed Servers
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong
-                    data-stat="players"
-                    data-count="0"
-                >
-                    0
-                </strong>
-
-                <span>
-                    Players Online
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong
-                    data-stat="votes"
-                    data-count="0"
-                >
-                    0
-                </strong>
-
-                <span>
-                    Community Votes
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FEATURED SERVERS
-             ================================================= -->
-
-        <section
-            class="section featured-section section-reveal"
-        >
+        <section class="home-section">
 
             <div class="section-heading">
 
                 <div>
 
                     <span class="eyebrow">
-                        DISCOVER
+                        EXPLORE
                     </span>
 
                     <h2>
-                        Featured servers
+                        Browse by game mode
                     </h2>
-
-                    <p>
-                        Explore servers selected from the community.
-                    </p>
 
                 </div>
 
@@ -350,152 +189,24 @@
             </div>
 
 
-            <!--
-                main.js will populate this element using
-                servers.json.
-
-                IMPORTANT:
-                No fake servers are placed here.
-            -->
-
-            <div
-                class="server-grid"
-                id="featuredServers"
-                aria-live="polite"
-            >
-            </div>
-
-
-            <!-- Empty state -->
-
-            <div
-                class="server-empty-state"
-                id="featuredEmpty"
-                hidden
-            >
-
-                <div class="empty-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    No featured servers yet.
-                </h3>
-
-                <p>
-                    Be one of the first communities listed
-                    on EAGLER Servers.
-                </p>
-
-                <a
-                    href="submit.html"
-                    class="button button-secondary"
-                >
-                    Add Your Server
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             GAME MODES
-             ================================================= -->
-
-        <section
-            class="section modes-section section-reveal"
-        >
-
-            <div class="section-heading">
-
-                <div>
-
-                    <span class="eyebrow">
-                        EXPLORE
-                    </span>
-
-                    <h2>
-                        Find your gamemode
-                    </h2>
-
-                    <p>
-                        Jump straight into the type of server
-                        you want to play.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="modes-grid">
+            <div class="mode-grid">
 
                 <a
                     href="servers.html?mode=survival"
                     class="mode-card"
                 >
 
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        🌎
+                    <span class="mode-number">
+                        01
                     </span>
 
                     <strong>
                         Survival
                     </strong>
 
-                    <small>
-                        Build. Explore. Survive.
-                    </small>
-
-                </a>
-
-
-                <a
-                    href="servers.html?mode=smp"
-                    class="mode-card"
-                >
-
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        🏠
+                    <span>
+                        Build, explore and survive.
                     </span>
-
-                    <strong>
-                        SMP
-                    </strong>
-
-                    <small>
-                        Build a community.
-                    </small>
-
-                </a>
-
-
-                <a
-                    href="servers.html?mode=lifesteal"
-                    class="mode-card"
-                >
-
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        ♥
-                    </span>
-
-                    <strong>
-                        Lifesteal
-                    </strong>
-
-                    <small>
-                        Fight for your hearts.
-                    </small>
 
                 </a>
 
@@ -505,20 +216,37 @@
                     class="mode-card"
                 >
 
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        ⚔
+                    <span class="mode-number">
+                        02
                     </span>
 
                     <strong>
                         PvP
                     </strong>
 
-                    <small>
-                        Test your skills.
-                    </small>
+                    <span>
+                        Fight other players.
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="servers.html?mode=lifesteal"
+                    class="mode-card"
+                >
+
+                    <span class="mode-number">
+                        03
+                    </span>
+
+                    <strong>
+                        Lifesteal
+                    </strong>
+
+                    <span>
+                        Risk your hearts in combat.
+                    </span>
 
                 </a>
 
@@ -528,43 +256,17 @@
                     class="mode-card"
                 >
 
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        ☁
+                    <span class="mode-number">
+                        04
                     </span>
 
                     <strong>
                         Skyblock
                     </strong>
 
-                    <small>
-                        Start with nothing.
-                    </small>
-
-                </a>
-
-
-                <a
-                    href="servers.html?mode=creative"
-                    class="mode-card"
-                >
-
-                    <span
-                        class="mode-icon"
-                        aria-hidden="true"
-                    >
-                        ✦
+                    <span>
+                        Start small and build up.
                     </span>
-
-                    <strong>
-                        Creative
-                    </strong>
-
-                    <small>
-                        Build without limits.
-                    </small>
 
                 </a>
 
@@ -573,55 +275,42 @@
         </section>
 
 
-        <!-- =================================================
-             SERVER OWNER CTA
-             ================================================= -->
+        <!-- CTA -->
 
-        <section
-            class="cta-section section-reveal"
-        >
+        <section class="home-cta">
 
-            <div class="cta-content">
+            <div>
 
                 <span class="eyebrow">
-                    SERVER OWNER?
+                    SERVER OWNERS
                 </span>
 
-
                 <h2>
-
-                    Put your server
-
-                    <span class="gradient-text">
-                        in front of players.
-                    </span>
-
+                    Have an Eaglercraft server?
                 </h2>
 
-
                 <p>
-                    List your Eaglercraft server on EAGLER Servers
-                    and let new players discover your community.
+                    List it on EAGLER Servers and let
+                    new players discover your community.
                 </p>
-
-
-                <a
-                    href="submit.html"
-                    class="button button-primary"
-                >
-                    Add Your Server →
-                </a>
 
             </div>
 
+
+            <a
+                href="submit.html"
+                class="button button-primary"
+            >
+                Add Your Server →
+            </a>
+
         </section>
+
 
     </main>
 
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
+    <!-- Footer -->
 
     <footer class="footer">
 
@@ -647,7 +336,8 @@
 
 
                 <p>
-                    Discover the Eaglercraft server community.
+                    A simple directory for the Eaglercraft
+                    server community.
                 </p>
 
             </div>
@@ -697,6 +387,7 @@
 
                 </div>
 
+
             </div>
 
         </div>
@@ -717,11 +408,70 @@
     </footer>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
+    <!-- Mobile navigation -->
 
-    <script src="main.js"></script>
+    <script>
+
+        const menuButton =
+            document.querySelector(
+                ".mobile-menu-button"
+            );
+
+
+        const nav =
+            document.querySelector(
+                ".nav-links"
+            );
+
+
+        if (
+            menuButton &&
+            nav
+        ) {
+
+            menuButton.addEventListener(
+                "click",
+                () => {
+
+                    const open =
+                        nav.classList.toggle(
+                            "mobile-open"
+                        );
+
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        String(open)
+                    );
+
+                }
+            );
+
+
+            nav.querySelectorAll("a")
+                .forEach(link => {
+
+                    link.addEventListener(
+                        "click",
+                        () => {
+
+                            nav.classList.remove(
+                                "mobile-open"
+                            );
+
+                            menuButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+    </script>
 
 </body>
 </html>

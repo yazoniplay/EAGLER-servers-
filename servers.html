@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Browse Eaglercraft servers. Search by name, gamemode, version and more."
+    >
+
+    <meta
+        name="theme-color"
+        content="#050609"
+    >
+
+    <title>Browse Servers — EAGLER Servers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Directory-specific styling */
+
+        .directory {
+            width: min(
+                var(--max-width),
+                calc(100% - 40px)
+            );
+
+            margin-inline: auto;
+
+            padding-top: 150px;
+            padding-bottom: 120px;
+        }
+
+        .directory-header {
+            max-width: 750px;
+            margin-bottom: 40px;
+        }
+
+        .directory-header h1 {
+            margin-top: 10px;
+
+            font-size:
+                clamp(2.8rem, 7vw, 5rem);
+
+            line-height: 1;
+
+            letter-spacing: -.07em;
+        }
+
+        .directory-header p {
+            max-width: 600px;
+
+            margin-top: 18px;
+
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+        .directory-controls {
+            display: grid;
+
+            grid-template-columns:
+                minmax(200px, 1fr)
+                180px
+                180px;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+        }
+
+        .directory-search,
+        .directory-select {
+            height: 52px;
+
+            padding: 0 15px;
+
+            border-radius: 14px;
+
+            border: 1px solid var(--border);
+
+            outline: none;
+
+            background:
+                rgba(255,255,255,.045);
+
+            color: white;
+
+            backdrop-filter: blur(15px);
+
+            transition:
+                border-color .25s ease,
+                background .25s ease;
+        }
+
+        .directory-search:focus,
+        .directory-select:focus {
+            border-color:
+                rgba(124,92,255,.5);
+
+            background:
+                rgba(255,255,255,.065);
+        }
+
+        .directory-search::placeholder {
+            color: var(--dim);
+        }
+
+        .directory-select option {
+            background: #090a10;
+            color: white;
+        }
+
+        .directory-meta {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            color: var(--dim);
+
+            font-size: 11px;
+        }
+
+        .directory-count {
+            color: var(--muted);
+        }
+
+        .server-grid.directory-grid {
+            grid-template-columns:
+                repeat(3, 1fr);
+        }
+
+        .directory-empty {
+            padding: 80px 25px;
+
+            text-align: center;
+
+            border:
+                1px dashed var(--border);
+
+            border-radius:
+                var(--radius-lg);
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+        .directory-empty-icon {
+            font-size: 30px;
+
+            color: var(--accent-light);
+        }
+
+        .directory-empty h2 {
+            margin-top: 12px;
+
+            font-size: 22px;
+
+            letter-spacing: -.04em;
+        }
+
+        .directory-empty p {
+            max-width: 450px;
+
+            margin: 8px auto 22px;
+
+            color: var(--dim);
+
+            font-size: 13px;
+        }
+
+        .directory-pagination {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            margin-top: 35px;
+        }
+
+        .page-button {
+            min-width: 40px;
+            height: 40px;
+
+            padding: 0 12px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            background:
+                rgba(255,255,255,.035);
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            transition:
+                background .25s ease,
+                color .25s ease,
+                border-color .25s ease;
+        }
+
+        .page-button:hover,
+        .page-button.active {
+            background:
+                rgba(124,92,255,.15);
+
+            color: white;
+
+            border-color:
+                rgba(124,92,255,.35);
+        }
+
+
+        @media (max-width: 850px) {
+
+            .directory-controls {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .directory-search {
+                grid-column: 1 / -1;
+            }
+
+            .server-grid.directory-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 560px) {
+
+            .directory {
+                width:
+                    calc(100% - 24px);
+
+                padding-top: 120px;
+            }
+
+            .directory-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .directory-search {
+                grid-column: auto;
+            }
+
+            .server-grid.directory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Background -->
+
+    <div
+        class="background"
+        aria-hidden="true"
+    >
+
+        <div class="background-grid"></div>
+
+        <div class="background-glow glow-one"></div>
+
+        <div class="background-glow glow-two"></div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <span class="brand-mark">
+                    E
+                </span>
+
+                <span class="brand-name">
+                    EAGLER <strong>Servers</strong>
+                </span>
+
+            </a>
+
+
+            <nav
+                class="nav-links"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="servers.html"
+                    aria-current="page"
+                >
+                    Servers
+                </a>
+
+                <a href="submit.html">
+                    Add Server
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+            </nav>
+
+
+            <a
+                href="submit.html"
+                class="nav-button"
+            >
+                Add Your Server
+            </a>
+
+
+            <button
+                class="mobile-menu-button"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main directory -->
+
+    <main class="directory">
+
+        <header class="directory-header">
+
+            <span class="eyebrow">
+                SERVER DIRECTORY
+            </span>
+
+            <h1>
+                Find a server
+                <span class="gradient-text">
+                    worth playing.
+                </span>
+            </h1>
+
+            <p>
+                Search and discover Eaglercraft servers
+                by name, gamemode and community.
+            </p>
+
+        </header>
+
+
+        <!-- Controls -->
+
+        <section
+            class="directory-controls"
+            aria-label="Server filters"
+        >
+
+            <input
+                type="search"
+                id="directorySearch"
+                class="directory-search"
+                placeholder="Search servers..."
+                autocomplete="off"
+                aria-label="Search servers"
+            >
+
+
+            <select
+                id="modeFilter"
+                class="directory-select"
+                aria-label="Filter by gamemode"
+            >
+
+                <option value="all">
+                    All gamemodes
+                </option>
+
+                <option value="survival">
+                    Survival
+                </option>
+
+                <option value="smp">
+                    SMP
+                </option>
+
+                <option value="lifesteal">
+                    Lifesteal
+                </option>
+
+                <option value="pvp">
+                    PvP
+                </option>
+
+                <option value="skyblock">
+                    Skyblock
+                </option>
+
+                <option value="creative">
+                    Creative
+                </option>
+
+            </select>
+
+
+            <select
+                id="sortFilter"
+                class="directory-select"
+                aria-label="Sort servers"
+            >
+
+                <option value="featured">
+                    Featured
+                </option>
+
+                <option value="players">
+                    Most Players
+                </option>
+
+                <option value="votes">
+                    Most Votes
+                </option>
+
+                <option value="name">
+                    Name A–Z
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Results -->
+
+        <div class="directory-meta">
+
+            <span
+                class="directory-count"
+                id="serverCount"
+            >
+                0 servers
+            </span>
+
+            <span>
+                Updated automatically
+            </span>
+
+        </div>
+
+
+        <section
+            class="server-grid directory-grid"
+            id="serverList"
+            aria-live="polite"
+        >
+        </section>
+
+
+        <!-- Empty state -->
+
+        <section
+            class="directory-empty"
+            id="directoryEmpty"
+            hidden
+        >
+
+            <div class="directory-empty-icon">
+                ⌕
+            </div>
+
+            <h2>
+                No servers found.
+            </h2>
+
+            <p>
+                Try changing your search or filters,
+                or be the first to add a server.
+            </p>
+
+            <a
+                href="submit.html"
+                class="button button-primary"
+            >
+                Add Your Server →
+            </a>
+
+        </section>
+
+
+        <!-- Pagination -->
+
+        <nav
+            class="directory-pagination"
+            id="pagination"
+            aria-label="Server pages"
+        >
+        </nav>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand"
+                >
+
+                    <span class="brand-mark">
+                        E
+                    </span>
+
+                    <span class="brand-name">
+                        EAGLER <strong>Servers</strong>
+                    </span>
+
+                </a>
+
+                <p>
+                    Discover the Eaglercraft server community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+
+                    <strong>
+                        Explore
+                    </strong>
+
+                    <a href="servers.html">
+                        Servers
+                    </a>
+
+                    <a href="servers.html?mode=survival">
+                        Survival
+                    </a>
+
+                    <a href="servers.html?mode=pvp">
+                        PvP
+                    </a>
+
+                    <a href="servers.html?mode=lifesteal">
+                        Lifesteal
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Community
+                    </strong>
+
+                    <a href="submit.html">
+                        Add Server
+                    </a>
+
+                    <a href="about.html">
+                        About
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 EAGLER Servers
+            </span>
+
+            <span>
+                Built for the Eaglercraft community.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="servers.js"></script>
+
+</body>
+</html>
